@@ -1,6 +1,6 @@
 {
   "name": "db-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DB Template Inspired by Spring JDBC Template",
   "main": "index.js",
   "scripts": {
