@@ -1,0 +1,29 @@
+{
+  "name": "db-template",
+  "version": "1.0.0",
+  "description": "DB Template Inspired by Spring JDBC Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scriptbees/db-template.git"
+  },
+  "keywords": [
+    "spring",
+    "jdbc",
+    "db",
+    "mysql"
+  ],
+  "author": "Venkat Dulipalli <venkatsep14@gmail.com> (http://volunteermark.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scriptbees/db-template/issues"
+  },
+  "homepage": "https://github.com/scriptbees/db-template",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
+  }
+}
