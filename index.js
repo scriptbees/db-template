@@ -17,7 +17,7 @@ module.exports = function(pool) {
 		});
 	}
 
-	function insertAndReturnKey(reqObject, callback) {
+	function insertAndReturnKey(query,data, callback) {
 		pool.getConnection(function(err, connection) {
 			if (err) {
 				callback(err, null);
@@ -34,7 +34,7 @@ module.exports = function(pool) {
 		});
 	}
 
-	function queryForAll(reqObject, callback) {
+	function queryForAll(query,data, callback) {
 		pool.getConnection(function(err, connection) {
 			if (err) {
 				callback(err, null);
@@ -51,7 +51,7 @@ module.exports = function(pool) {
 		});
 	}
 
-	function queryForObject(reqObject, callback) {
+	function queryForObject(query,data, callback) {
 		pool.getConnection(function(err, connection) {
 			if (err) {
 				callback(err, null);
