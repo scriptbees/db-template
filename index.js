@@ -6,12 +6,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
+					connection.release();
 					if (err) {
 						callback(err, null);
 					} else {
 						callback(null, rows.affectedRows);
 					}
-					connection.release();
 				});
 			}
 		});
@@ -22,13 +22,14 @@ module.exports = function(pool) {
 			if (err) {
 				callback(err, null);
 			} else {
+
 				connection.query(query, data, function(err, rows) {
+					connection.release();
 					if (err) {
 						callback(err, null);
 					} else {
 						callback(null, rows.insertId);
 					}
-					connection.release();
 				});
 			}
 		});
@@ -40,12 +41,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
+					connection.release();
 					if (err) {
 						callback(err, null);
 					} else {
 						callback(null, rows);
 					}
-					connection.release();
 				});
 			}
 		});
@@ -57,12 +58,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
+					connection.release();
 					if (err) {
 						callback(err, null);
 					} else {
 						callback(null, rows);
 					}
-					connection.release();
 				});
 			}
 		});
