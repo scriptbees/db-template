@@ -6,7 +6,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
-					connection.release();
+					connection.end(function(err){
+						console.log('closed connection');
+						if(err){
+							console.log('Connection Not Being Closed');
+						}
+					});
 					if (err) {
 						callback(err, null);
 					} else {
@@ -24,7 +29,12 @@ module.exports = function(pool) {
 			} else {
 
 				connection.query(query, data, function(err, rows) {
-					connection.release();
+					connection.end(function(err){
+						console.log('closed connection');
+						if(err){
+							console.log('Connection Not Being Closed');
+						}
+					});
 					if (err) {
 						callback(err, null);
 					} else {
@@ -41,7 +51,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
-					connection.release();
+					connection.end(function(err){
+						console.log('closed connection');
+						if(err){
+							console.log('Connection Not Being Closed');
+						}
+					});
 					if (err) {
 						callback(err, null);
 					} else {
@@ -58,7 +73,12 @@ module.exports = function(pool) {
 				callback(err, null);
 			} else {
 				connection.query(query, data, function(err, rows) {
-					connection.release();
+					connection.end(function(err){
+						console.log('closed connection');
+						if(err){
+							console.log('Connection Not Being Closed');
+						}
+					});
 					if (err) {
 						callback(err, null);
 					} else {
