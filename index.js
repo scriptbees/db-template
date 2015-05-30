@@ -1,101 +1,90 @@
 module.exports = function(pool) {
-	function update(query, data, callback) {
+    
+    function releaseConnection(connection) {
+        /*connection.end(function(err) {
+            console.log('closed connection');
+            if (err) {
+                console.log('Connection Not Being Closed');
+            }
+        });*/
+		connection.destroy();
 
-		pool.getConnection(function(err, connection) {
-			if (err) {
-				callback(err, null);
-			} else {
-				connection.query(query, data, function(err, rows) {
-					connection.end(function(err){
-						console.log('closed connection');
-						if(err){
-							console.log('Connection Not Being Closed');
-						}
-					});
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, rows.affectedRows);
-					}
-				});
-			}
-		});
-	}
+    }
 
-	function insertAndReturnKey(query,data, callback) {
-		pool.getConnection(function(err, connection) {
-			if (err) {
-				callback(err, null);
-			} else {
+    function update(query, data, callback) {
 
-				connection.query(query, data, function(err, rows) {
-					connection.end(function(err){
-						console.log('closed connection');
-						if(err){
-							console.log('Connection Not Being Closed');
-						}
-					});
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, rows.insertId);
-					}
-				});
-			}
-		});
-	}
+        pool.getConnection(function(err, connection) {
+            if (err) {
+                callback(err, null);
+            } else {
+                connection.query(query, data, function(err, rows) {
+                    releaseConnection(connection);
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, rows.affectedRows);
+                    }
+                });
+            }
+        });
+    }
 
-	function queryForAll(query,data, callback) {
-		pool.getConnection(function(err, connection) {
-			if (err) {
-				callback(err, null);
-			} else {
-				connection.query(query, data, function(err, rows) {
-					connection.end(function(err){
-						console.log('closed connection');
-						if(err){
-							console.log('Connection Not Being Closed');
-						}
-					});
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, rows);
-					}
-				});
-			}
-		});
-	}
+    function insertAndReturnKey(query, data, callback) {
+        pool.getConnection(function(err, connection) {
+            if (err) {
+                callback(err, null);
+            } else {
 
-	function queryForObject(query,data, callback) {
-		pool.getConnection(function(err, connection) {
-			if (err) {
-				callback(err, null);
-			} else {
-				connection.query(query, data, function(err, rows) {
-					connection.end(function(err){
-						console.log('closed connection');
-						if(err){
-							console.log('Connection Not Being Closed');
-						}
-					});
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, rows);
-					}
-				});
-			}
-		});
-	}
+                connection.query(query, data, function(err, rows) {
+                    releaseConnection(connection);
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, rows.insertId);
+                    }
+                });
+            }
+        });
+    }
 
-	return {
-		update : update,
-		insertAndReturnKey : insertAndReturnKey,
-		queryForAll : queryForAll,
-		queryForObject : queryForObject
-	};
+    function queryForAll(query, data, callback) {
+        pool.getConnection(function(err, connection) {
+            if (err) {
+                callback(err, null);
+            } else {
+                connection.query(query, data, function(err, rows) {
+                    releaseConnection(connection);
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, rows);
+                    }
+                });
+            }
+        });
+    }
+
+    function queryForObject(query, data, callback) {
+        pool.getConnection(function(err, connection) {
+            if (err) {
+                callback(err, null);
+            } else {
+                connection.query(query, data, function(err, rows) {
+                    releaseConnection(connection);
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, rows);
+                    }
+                });
+            }
+        });
+    }
+
+    return {
+        update: update,
+        insertAndReturnKey: insertAndReturnKey,
+        queryForAll: queryForAll,
+        queryForObject: queryForObject
+    };
 };
-
-
-
